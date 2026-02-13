@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -30,11 +30,11 @@ export class AuthService {
   }
 
   private saveUser(user: any): void {
-    localStorage.setItem(this.AUTH_KEY, JSON.stringify(user));
+    sessionStorage.setItem(this.AUTH_KEY, JSON.stringify(user));
   }
 
   getUser(): User | null {
-    const user = localStorage.getItem(this.AUTH_KEY);
+    const user = sessionStorage.getItem(this.AUTH_KEY);
     return user ? JSON.parse(user) : null;
   }
 
@@ -43,6 +43,6 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.AUTH_KEY);
+    sessionStorage.removeItem(this.AUTH_KEY);
   }
 }
