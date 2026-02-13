@@ -1,0 +1,46 @@
+import { Component, inject, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FavoritesStore } from '../../../core/store/favorites/favorites.store';
+import { AuthService } from '../../../core/services/auth.service';
+
+@Component({
+  selector: 'app-job-card',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './jobcard.html',
+  styleUrls: ['./jobcard.css']
+})
+export class JobCardComponent {
+  readonly store = inject(FavoritesStore);
+  readonly auth = inject(AuthService);
+  
+  @Input() job: any;
+  @Input() isFavorite = false;
+
+  toggleFavorite() {
+    const user = this.auth.getUser();
+    if (!user || !user.id) return;
+
+    // On the favorites page, job is a FavoriteOffer — remove directly by its id
+    if (this.isFavorite) {
+      if (this.job.id) this.store.removeFavorite(this.job.id);
+      return;
+    }
+
+    const jobId = this.job.id || this.job.slug;
+    const isFav = this.store.isFavorite(jobId);
+    
+    if (isFav) {
+      const item = this.store.items().find(i => i.offerId === jobId);
+      if (item?.id) this.store.removeFavorite(item.id);
+    } else {
+      this.store.addFavorite({
+        userId: user.id,
+        offerId: jobId,
+        title: this.job.title,
+        company: this.job.company_name || this.job.company,
+        location: this.job.location
+      });
+    }
+  }
+}
