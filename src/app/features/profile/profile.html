@@ -1,0 +1,30 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-base-100 shadow-2xl rounded-box">
+    <h2 class="text-2xl font-bold mb-6">Manage Profile</h2>
+    
+    <form [formGroup]="profileForm" (ngSubmit)="onSave()" class="space-y-4">
+        <div class="form-control">
+            <label class="label" for="firstName">First Name</label>
+            <input id="firstName" type="text" formControlName="firstName" class="input input-bordered w-full" />
+        </div>
+        
+        <div class="form-control">
+            <label class="label" for="lastName">Last Name</label>
+            <input id="lastName" type="text" formControlName="lastName" class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control">
+            <label class="label" for="email">Email</label>
+            <input id="email" type="email" formControlName="email" class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control">
+            <label class="label" for="password">New Password</label>
+            <input id="password" type="password" formControlName="password" class="input input-bordered w-full" />
+        </div>
+
+        <div class="flex flex-col gap-3 mt-6">
+            <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary w-full">Save Changes</button>
+            <button type="button" (click)="onDeleteAccount()" class="btn btn-error btn-outline w-full">Delete Account</button>
+        </div>
+    </form>
+</div>

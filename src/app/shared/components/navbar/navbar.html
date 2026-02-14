@@ -11,12 +11,19 @@
         @if (isLoggedIn()) {
           <a routerLink="/favorites" routerLinkActive="border-b-2 border-white" class="px-3 py-2 text-sm font-medium">favorite</a>
           <a routerLink="/applications" routerLinkActive="border-b-2 border-white" class="px-3 py-2 text-sm font-medium">candidte</a>
+          <a routerLink="/profile" routerLinkActive="border-b-2 border-white" class="px-3 py-2 text-sm font-medium flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Profile
+          </a>
           <button (click)="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md text-sm font-medium transition">
 Logout          </button>
         } @else {
           <a routerLink="/login" class="px-3 py-2 text-sm font-medium">Login</a>
           <a routerLink="/register" class="bg-white text-blue-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition">
-Create account          </a>
+Create account </a>
         }
       </div>
     </div>

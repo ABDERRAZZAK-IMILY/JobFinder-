@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map  , tap} from 'rxjs';
 import { User } from '../models/user.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,4 +47,21 @@ export class AuthService {
   logout(): void {
     sessionStorage.removeItem(this.AUTH_KEY);
   }
+
+
+
+updateUser(user: User): Observable<User> {
+  return this.http.put<User>(`${this.apiUrl}/${user.id}`, user).pipe(
+    tap(updatedUser => {
+      const { password, ...userWithoutPassword } = updatedUser;
+      sessionStorage.setItem('user', JSON.stringify(userWithoutPassword));
+    })
+  );
+}
+
+deleteAccount(userId: string): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/${userId}`).pipe(
+    tap(() => this.logout())
+  );
+}
 }
