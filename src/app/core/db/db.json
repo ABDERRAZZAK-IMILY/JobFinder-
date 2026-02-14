@@ -5,7 +5,7 @@
       "firstName": "IMILY",
       "lastName": "ABDERRAZZAK",
       "email": "imily@greentech.com",
-      "password": "imily2018"
+      "password": "hamidhamid"
     }
   ],
   "favoritesOffers": [
@@ -40,7 +40,24 @@
       "title": "Wartungsmonteur / Wartungstechniker / Prüftechniker Sprinkleranlagen (m/w/d) | 48.000-57.600 € p.a.",
       "company": "Riverstate Premium Recruiting",
       "location": "Mogendorf"
+    },
+    {
+      "id": "0f19",
+      "userId": "9089",
+      "offerId": "wartungsmonteur-wartungstechniker-pruftechniker-sprinkleranlagen-48000-57600-eur-pa-mogendorf-203529",
+      "title": "Wartungsmonteur / Wartungstechniker / Prüftechniker Sprinkleranlagen (m/w/d) | 48.000-57.600 € p.a.",
+      "company": "Riverstate Premium Recruiting",
+      "location": "Mogendorf"
     }
   ],
-  "applications": []
+  "applications": [
+    {
+      "id": "a06e",
+      "userId": "9089",
+      "jobTitle": "Wartungsmonteur / Wartungstechniker / Prüftechniker Sprinkleranlagen (m/w/d) | 48.000-57.600 € p.a.",
+      "status": "Pending",
+      "notes": "",
+      "appliedDate": "2026-02-13T13:54:48.538Z"
+    }
+  ]
 }
