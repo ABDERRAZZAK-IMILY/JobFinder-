@@ -1,0 +1,57 @@
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-6 text-primary">Track Job Applications</h2>
+
+    <div class="overflow-x-auto bg-base-100 shadow-xl rounded-box">
+        <table class="table w-full">
+            <thead>
+                <tr>
+                    <th>Job / Company</th>
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>Personal Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (store.loading()) {
+                    <tr><td colspan="4" class="text-center"><span class="loading loading-spinner"></span> Loading...</td></tr>
+                } @else if (store.items().length === 0) {
+                    <tr><td colspan="4" class="text-center">You haven't applied to any jobs yet.</td></tr>
+                } @else {
+                    @for (app of store.items(); track app.id) {
+                        <tr>
+                            <td>
+                                <div class="font-bold">{{ app.jobTitle }}</div>
+                                <div class="text-sm opacity-50">{{ app.companyName }}</div>
+                            </td>
+                            <td>{{ app.appliedDate | date:'shortDate' }}</td>
+                            <td>
+                                <select 
+                                    [value]="app.status" 
+                                    (change)="updateStatus(app, $event)"
+                                    [ngClass]="{
+                                        'select-warning': app.status === 'Pending',
+                                        'select-success': app.status === 'Accepted',
+                                        'select-error': app.status === 'Rejected'
+                                    }"
+                                    class="select select-bordered select-sm w-full max-w-xs">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input 
+                                    type="text" 
+                                    [value]="app.notes" 
+                                    (blur)="updateNotes(app, noteInput.value)"
+                                    #noteInput
+                                    placeholder="Add a note here..." 
+                                    class="input input-bordered input-sm w-full" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
